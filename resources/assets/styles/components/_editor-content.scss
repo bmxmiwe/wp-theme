@@ -1,0 +1,16 @@
+.editor-content {
+  margin-bottom: rem-calc(60);
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: $cyan;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-size: rem-calc(18);
+    line-height: rem-calc(23);
+  }
+}

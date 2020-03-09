@@ -1,0 +1,50 @@
+footer {
+  padding: rem-calc(70) 0 rem-calc(74);
+  position: relative;
+  background-color: #002035;
+
+  h1 {
+    font-size: rem-calc(16);
+    font-weight: $regular;
+    line-height: rem-calc(19);
+    color: $white;
+    margin-bottom: rem-calc(17);
+  }
+
+  .content-column {
+    border-top: rem-calc(6) solid #006cb1;
+    padding-top: rem-calc(9);
+    margin-bottom: rem-calc(40);
+
+    h2 {
+      font-size: rem-calc(14);
+      line-height: rem-calc(20);
+      font-weight: $bold;
+      text-transform: uppercase;
+      color: $gray;
+    }
+
+    p {
+      font-size: inherit;
+      font-weight: 400;
+      line-height: 1.35714rem;
+      color: $white;
+      margin-bottom: 1.21429rem;
+    }
+  }
+
+  .back-to-top {
+    display: block;
+    height: rem-calc(50);
+    background-color: $orange;
+    line-height: rem-calc(50);
+    font-weight: $bold;
+    font-size: rem-calc(12);
+    color: $white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+}

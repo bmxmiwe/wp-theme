@@ -1,0 +1,28 @@
+$simpleform2-green: #30a519;
+
+body.page-simpleform-2 {
+  main.main {
+    background-size: auto 850px;
+  }
+
+  .simpleform-2-logo {
+    display: block;
+    margin: 30px auto;
+  }
+
+  .hero {
+    padding-top: 40px !important;
+  }
+
+  .simpleform-section {
+    .icon-container {
+      background-color: #ee871f;
+      border-radius: 7px;
+    }
+
+    button.submit {
+      background-color: #006cb1;
+      height: 60px;
+    }
+  }
+}

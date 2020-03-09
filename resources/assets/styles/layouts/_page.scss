@@ -1,0 +1,228 @@
+.page {
+  // introduction-small
+  section.introduction-small {
+    .introduction-content {
+      margin-top: 20px;
+      background-color: $white;
+      padding: 20px;
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  // introduction-medium
+  section.introduction-medium {
+    .introduction-content {
+      margin: auto;
+      margin-top: 40px;
+      max-width: 700px;
+    }
+  }
+
+  // info
+  section.info {
+    padding: rem-calc(48) 0 rem-calc(20);
+    padding-top: 280px;
+    @media screen and (max-width: 768px) {
+      padding-top: 10px;
+    }
+
+    h1 {
+      margin-bottom: rem-calc(42);
+      text-align: center;
+    }
+
+    .info-container {
+      text-align: center;
+
+      h2 {
+        font-size: rem-calc(16);
+        line-height: rem-calc(22);
+        font-weight: $bold;
+      }
+
+      .image-container {
+        margin-bottom: 20px;
+        height: rem-calc(128);
+        line-height: rem-calc(128);
+
+        img {
+          max-height: 128px;
+        }
+      }
+    }
+  }
+
+  // requirements
+  section.requirements {
+    background-color: $white;
+    padding: rem-calc(55) 0 rem-calc(45);
+
+    h1 {
+      margin-bottom: rem-calc(11);
+      text-align: center;
+    }
+
+    .requirements-text-container {
+      margin-bottom: rem-calc(40);
+      text-align: center;
+    }
+
+    .requirement-container {
+      margin-bottom: rem-calc(49);
+      min-height: rem-calc(74);
+
+      img {
+        position: absolute;
+      }
+
+      .text-container {
+        margin-left: rem-calc(92);
+
+        h2 {
+          font-size: rem-calc(18);
+          line-height: rem-calc(21);
+          letter-spacing: rem-calc(1);
+          font-weight: $bold;
+          text-transform: uppercase;
+          color: #63b32e;
+          margin: rem-calc(4) 0;
+        }
+
+        .text {
+          font-size: rem-calc(18);
+          line-height: rem-calc(21);
+        }
+      }
+    }
+  }
+
+  // contact and faq
+  section.contact-and-faq {
+    padding: rem-calc(60) 0 0;
+    background-color: #e5f0f7;
+    color: $black;
+    @include breakpoint(large) {
+      padding-bottom: rem-calc(54);
+    }
+
+    h1 {
+      color: $black;
+      margin-bottom: rem-calc(32);
+    }
+
+    a {
+      color: $black;
+    }
+
+    .faq-container {
+      margin-bottom: rem-calc(20);
+
+      &:last-child {
+        margin-bottom: rem-calc(72);
+      }
+
+      .question {
+        display: block;
+        overflow: auto;
+        margin-bottom: rem-calc(9);
+        cursor: pointer;
+
+        .question-mark {
+          float: left;
+        }
+
+        h2 {
+          margin: rem-calc(4) 0 rem-calc(4) rem-calc(44);
+          font-size: rem-calc(16);
+          line-height: rem-calc(20);
+          font-weight: $bold;
+        }
+      }
+
+      .answer {
+        margin-left: rem-calc(44);
+        display: none;
+
+        &.show {
+          display: block;
+        }
+      }
+    }
+
+    .contact-form {
+      background-color: #82c975;
+      padding: rem-calc(25) rem-calc(50) rem-calc(49) rem-calc(50);
+      margin: 0 rem-calc(-15);
+      @include breakpoint(large) {
+        margin: 0 0 rem-calc(72);
+      }
+
+      .nf-form-title h3 {
+        font-size: rem-calc(32);
+        line-height: rem-calc(37);
+        margin-bottom: rem-calc(63);
+        font-weight: $bold;
+      }
+
+      .nf-field-container {
+        margin-bottom: rem-calc(11);
+
+        .nf-field-label {
+          margin-left: rem-calc(5);
+          margin-bottom: rem-calc(3);
+
+          label {
+            color: #4c4c4c;
+            font-size: rem-calc(12);
+            line-height: rem-calc(14);
+            font-weight: $bold;
+          }
+        }
+
+        input,
+        textarea {
+          border: none;
+          border-radius: 3px;
+          box-shadow: none;
+          background-color: #ebf7fc;
+
+          &:focus {
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+          }
+        }
+
+        .nf-error {
+          input,
+          textarea {
+            background-color: #ffadad;
+          }
+        }
+      }
+
+      .submit-container {
+        margin-top: rem-calc(29);
+
+        input {
+          width: 100%;
+          height: rem-calc(50);
+          background-color: $white;
+          text-transform: uppercase;
+          font-size: rem-calc(22);
+          letter-spacing: rem-calc(1.22);
+          font-weight: $bold;
+          color: $cyan;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      .nf-error-msg,
+      .nf-form-fields-required,
+      .ninja-forms-req-symbol {
+        display: none;
+      }
+    }
+  }
+}

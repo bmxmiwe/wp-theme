@@ -1,0 +1,89 @@
+// Base styles
+h1 {
+  color: $dark-cyan;
+  font-size: rem-calc(32);
+  line-height: rem-calc(37);
+  font-weight: $semi-bold;
+}
+
+.row-wrapper .column,
+.row-wrapper.column {
+  padding-left: rem-calc(15);
+  padding-right: rem-calc(15);
+}
+
+.row-wrapper .row {
+  margin-left: rem-calc(-15);
+  margin-right: rem-calc(-15);
+}
+
+main.main {
+  max-width: rem-calc(1920);
+  margin: auto;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: auto 755px;
+}
+
+// hero
+section.hero {
+  padding-top: rem-calc(20);
+  @include breakpoint(medium) {
+    padding-top: rem-calc(80);
+  }
+
+  .application-form {
+    min-height: 450px;
+    margin-bottom: rem-calc(55);
+    background-color: $white;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    @include breakpoint(large) {
+      margin-bottom: 0;
+    }
+
+    .padding {
+      padding: 0 rem-calc(15);
+      @include breakpoint(large) {
+        padding: 0 rem-calc(40);
+      }
+    }
+  }
+
+  .content {
+    padding: rem-calc(10) rem-calc(15);
+    background-color: $white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: rem-calc(15);
+  }
+
+  .steps {
+    h1 {
+      margin-bottom: rem-calc(31);
+      @include breakpoint(medium) {
+        text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.5);
+      }
+    }
+
+    .step {
+      overflow: hidden;
+      border-radius: rem-calc(10);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      margin-bottom: rem-calc(20);
+
+      .heading {
+        height: rem-calc(28);
+        line-height: rem-calc(28);
+        background: $dark-cyan;
+        color: $white;
+        font-weight: $bold;
+      }
+
+      .image-container {
+        height: rem-calc(97);
+        background: $white;
+        line-height: 97px;
+      }
+    }
+  }
+}

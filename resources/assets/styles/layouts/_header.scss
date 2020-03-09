@@ -1,0 +1,53 @@
+// Header
+header {
+  min-height: rem-calc(60);
+
+  .logo {
+    margin-top: 6px;
+  }
+
+  .toggle-mobile-main-nav {
+    display: block;
+    float: right;
+    margin-top: rem-calc(22);
+    margin-right: rem-calc(5);
+    font-size: rem-calc(20);
+    @include breakpoint(large) {
+      display: none;
+    }
+  }
+
+  nav.main {
+    margin-top: rem-calc(15);
+    margin-bottom: rem-calc(15);
+    font-size: rem-calc(16);
+    font-weight: $semi-bold;
+    line-height: rem-calc(19);
+    display: none;
+
+    &.open {
+      display: block;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+
+      li {
+        margin-bottom: rem-calc(10);
+        text-align: center;
+      }
+    }
+    @include breakpoint(large) {
+      margin-top: rem-calc(25);
+      margin-bottom: 0;
+      display: block;
+      float: right;
+
+      ul li {
+        display: inline-block;
+        margin-left: rem-calc(30);
+      }
+    }
+  }
+}

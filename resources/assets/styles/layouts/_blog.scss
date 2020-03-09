@@ -1,0 +1,51 @@
+.blog-content {
+  h1 {
+    color: #2d2d2d;
+  }
+
+  h2 {
+    font-size: rem-calc(32);
+
+    &.entry-title {
+      a {
+        color: #2d2d2d;
+      }
+    }
+  }
+
+  h3 {
+    font-size: rem-calc(28);
+  }
+}
+
+.blog-sidebar {
+  .widget {
+    h3 {
+      font-size: rem-calc(20);
+    }
+
+    ul {
+      list-style: none;
+      margin-left: 0;
+
+      li {
+        margin-bottom: rem-calc(8);
+      }
+    }
+  }
+}
+
+.nav-previous,
+.nav-next {
+  display: inline-block;
+}
+
+.nav-next {
+  margin-left: rem-calc(30);
+}
+
+.navigation.posts-navigation {
+  h2 {
+    font-size: rem-calc(14);
+  }
+}
