@@ -165,10 +165,10 @@ let fields = {
     label: 'Siviilisääty',
     options: [
       'Naimisissa',
-      'Avoliitto',
       'Naimaton',
-      'Eronnut',
+      'Avoliitossa',
       'Leski',
+      'Eronnut',
     ],
   },
   children: {
@@ -269,18 +269,20 @@ let fields = {
     options: [
       {
         label: 'Peruskoulu',
-        value: 'peruskoulu',
+        value: 1,
       },
       {
         label: 'Lukio',
-        value: 'lukio',
+        value: 2,
       },
       {
         label: 'Ammattikoulu',
-        value: 'ammattikoulu',
+        value: 3,
       },
-      'Alempi korkeakoulututkinto',
-      'Ylempi korkeakoulututkinto',
+      {
+        label: 'Korkeakoulu',
+        value: 4,
+      },
     ],
   },
   visa: {
@@ -360,14 +362,43 @@ let fields = {
   employmentDetails: {
     occupationCategory: {
       type: 'Dropdown',
-      label: 'Ammattiryhmä',
+      label: 'Asema',
       options: [
-        'Maatalousyrittäjä',
-        'Yrittäjä',
-        'Ylempi toimihenkilö',
-        'Alempi toimihenkilö',
-        'Työntekijä',
-        'Muu',
+        {
+          label: 'Työntekijä',
+          value: 1,
+        },
+        {
+          label: 'Alempi toimihenkilö',
+          value: 2,
+        },
+        {
+          label: 'Ylempi toimihenkilö',
+          value: 3,
+        },
+        {
+          label: 'Johtavassa asemassa',
+          value: 4,
+        },{
+          label: 'Yrittäjä',
+          value: 5,
+        },
+        {
+          label: 'Maanviljelijä',
+          value: 6,
+        },
+        {
+          label: 'Eläkeläinen',
+          value: 7,
+        },
+        {
+          label: 'Opiskelija',
+          value: 8,
+        },
+        {
+          label: 'Muu',
+          value: 9,
+        },
       ],
     },
     startMonth: {
@@ -421,7 +452,7 @@ let fields = {
         },
         {
           value: 'building',
-          label: 'Rakentaminen'
+          label: 'Rakentaminen',
         },
         {
           value: 'cleaning_and_laundry_activities',
@@ -429,11 +460,11 @@ let fields = {
         },
         {
           value: 'data_traffic',
-          label: 'Tietoliikenne'
+          label: 'Tietoliikenne',
         },
         {
           value: 'education',
-          label: 'Koulutus'
+          label: 'Koulutus',
         },
         {
           value: 'energy',
@@ -445,11 +476,11 @@ let fields = {
         },
         {
           value: 'forestry',
-          label: 'Metsätalous'
+          label: 'Metsätalous',
         },
         {
           value: 'health_and_medical_services',
-          label: 'Terveyspalvelut'
+          label: 'Terveyspalvelut',
         },
         {
           value: 'hotel_and_extractive_activities',
@@ -457,79 +488,79 @@ let fields = {
         },
         {
           value: 'industry',
-          label: 'Teollisuus'
+          label: 'Teollisuus',
         },
         {
           value: 'mining',
-          label: 'Kaivos-ja kaivannaistoiminta'
+          label: 'Kaivos-ja kaivannaistoiminta',
         },
         {
           value: 'national_defense',
-          label: 'Maanpuolustus'
+          label: 'Maanpuolustus',
         },
         {
           value: 'nutrition_action',
-          label: 'Ravitsemustoiminta'
+          label: 'Ravitsemustoiminta',
         },
         {
           value: 'organisational_activities',
-          label: 'Järjestötoiminta'
+          label: 'Järjestötoiminta',
         },
         {
           value: 'public_administration',
-          label: 'Julkinen hallinto'
+          label: 'Julkinen hallinto',
         },
         {
           value: 'real_estate_and_rental_services',
-          label: 'Kiinteistö-ja vuokrauspalvelut'
+          label: 'Kiinteistö-ja vuokrauspalvelut',
         },
         {
           value: 'recreation_and_cultural_services',
-          label: 'Virkistys-ja kulttuuripalvelut'
+          label: 'Virkistys-ja kulttuuripalvelut',
         },
         {
           value: 'religious_activities',
-          label: 'Uskonnollinen toiminta'
+          label: 'Uskonnollinen toiminta',
         },
         {
           value: 'research',
-          label: 'Tutkimus'
+          label: 'Tutkimus',
         },
         {
           value: 'security_protection_police_fire_department',
-          label: 'Suojelu, poliisi, palolaitos'
+          label: 'Suojelu, poliisi, palolaitos',
         },
         {
           value: 'senior_citizen_pensions_retiree',
-          label: 'Eläkeläinen'
+          label: 'Eläkeläinen',
         },
         {
           value: 'service',
-          label: 'Palvelu, muut'
+          label: 'Palvelu, muut',
         },
         {
           value: 'social',
-          label: 'Sosiaalipalvelut'
+          label: 'Sosiaalipalvelut',
         },
         {
           value: 'student_unemployed_housewife',
-          label: 'Opiskelija / työtön / kotirouva'
+          label: 'Opiskelija / työtön / kotirouva',
         },
         {
           value: 'technical_support_and_services_for_business',
-          label: 'Tekninen palvelu ja palvelut liike-elämälle'
+          label: 'Tekninen palvelu ja palvelut liike-elämälle',
         },
         {
           value: 'trading',
-          label: 'Kauppa'
+          label: 'Kauppa',
         },
         {
           value: 'transportation',
-          label: 'Kuljetus'
+          label: 'Kuljetus',
         },
         {
           value: 'unknown_can_not_say',
-          label: 'Tuntematon / En osaa sanoa'
+          label: 'Tuntematon / En osaa sanoa',
         },
         ],
     },
