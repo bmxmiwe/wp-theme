@@ -9,6 +9,9 @@ let employmentFixedDurationInputGroup = [
   'employer',
   'grossIncome',
   'netIncome',
+  'previousEmployer',
+  'previousEmployedSince',
+  'previousEmployedTo',
 ];
 
 let extraPersonEmploymentFixedDurationInputGroup = [
@@ -408,6 +411,128 @@ let fields = {
       label: 'Edellisen työsuhteen päättymisaika',
       dateRestriction: 'past',
     },
+    industry: {
+      type: 'Dropdown',
+      label: 'Toimiala',
+      options: [
+        {
+          value: 'agriculture_fishing_hunting',
+          label: 'Maatalous, kala-ja riistatalous',
+        },
+        {
+          value: 'building',
+          label: 'Rakentaminen'
+        },
+        {
+          value: 'cleaning_and_laundry_activities',
+          lable: 'Siivous-ja pesulatoiminta',
+        },
+        {
+          value: 'data_traffic',
+          label: 'Tietoliikenne'
+        },
+        {
+          value: 'education',
+          label: 'Koulutus'
+        },
+        {
+          value: 'energy',
+          label: 'Energia- ja vesihuolto',
+        },
+        {
+          value: 'finance',
+          label: 'Rahoitus - ja vakuustoiminta',
+        },
+        {
+          value: 'forestry',
+          label: 'Metsätalous'
+        },
+        {
+          value: 'health_and_medical_services',
+          label: 'Terveyspalvelut'
+        },
+        {
+          value: 'hotel_and_extractive_activities',
+          label: 'Majoitustoiminta',
+        },
+        {
+          value: 'industry',
+          label: 'Teollisuus'
+        },
+        {
+          value: 'mining',
+          label: 'Kaivos-ja kaivannaistoiminta'
+        },
+        {
+          value: 'national_defense',
+          label: 'Maanpuolustus'
+        },
+        {
+          value: 'nutrition_action',
+          label: 'Ravitsemustoiminta'
+        },
+        {
+          value: 'organisational_activities',
+          label: 'Järjestötoiminta'
+        },
+        {
+          value: 'public_administration',
+          label: 'Julkinen hallinto'
+        },
+        {
+          value: 'real_estate_and_rental_services',
+          label: 'Kiinteistö-ja vuokrauspalvelut'
+        },
+        {
+          value: 'recreation_and_cultural_services',
+          label: 'Virkistys-ja kulttuuripalvelut'
+        },
+        {
+          value: 'religious_activities',
+          label: 'Uskonnollinen toiminta'
+        },
+        {
+          value: 'research',
+          label: 'Tutkimus'
+        },
+        {
+          value: 'security_protection_police_fire_department',
+          label: 'Suojelu, poliisi, palolaitos'
+        },
+        {
+          value: 'senior_citizen_pensions_retiree',
+          label: 'Eläkeläinen'
+        },
+        {
+          value: 'service',
+          label: 'Palvelu, muut'
+        },
+        {
+          value: 'social',
+          label: 'Sosiaalipalvelut'
+        },
+        {
+          value: 'student_unemployed_housewife',
+          label: 'Opiskelija / työtön / kotirouva'
+        },
+        {
+          value: 'technical_support_and_services_for_business',
+          label: 'Tekninen palvelu ja palvelut liike-elämälle'
+        },
+        {
+          value: 'trading',
+          label: 'Kauppa'
+        },
+        {
+          value: 'transportation',
+          label: 'Kuljetus'
+        },
+        {
+          value: 'unknown_can_not_say',
+          label: 'Tuntematon / En osaa sanoa'
+        },
+        ],
+    },
     fixedDurationEndMonth: {
       type: 'Datepicker',
       label: 'Määräaikaisen työsuhteen voimassaoloaika',
@@ -601,7 +726,7 @@ export default {
       previousEmployer: null,
       previousEmployedSince: null,
       previousEmployedTo: null,
-
+      industry: null,
       // fixedDuration
       fixedDurationEndMonth: null,
 
@@ -743,6 +868,7 @@ export default {
         'previousEmployer',
         'previousEmployedSince',
         'previousEmployedTo',
+        'industry',
       ],
       'Määräaikainen': employmentFixedDurationInputGroup,
       'Projektityöntekijä': employmentFixedDurationInputGroup,
@@ -754,6 +880,10 @@ export default {
         'companyRegistrationDate',
         'grossIncome',
         'netIncome',
+        'previousEmployer',
+        'previousEmployedSince',
+        'previousEmployedTo',
+        'industry',
       ],
       'Työtön': [],
       'Eläkeläinen': [

@@ -4,7 +4,6 @@
        :style="{ backgroundImage: 'url(' + other.imageUrl + ')' }">
 
     <template v-if="state.step !== 3">
-      dupa
       <div class="row column">
         <div class="padding">
           <div class="text-center form-top">
@@ -423,8 +422,30 @@
     },
     methods: {
       isEmployedMoreThanYear() {
-        
-        return this.inputGroup.employmentDetails[this.data.personEmployment.employment]
+        let valuesToRemove = [
+          'previousEmployer',
+          'previousEmployedSince',
+          'previousEmployedTo'
+        ];
+        let start = ApplicationFormData.data.personEmploymentDetails.startMonth;
+        if (start === null) {
+          var listOfFields = this.inputGroup.employmentDetails[this.data.personEmployment.employment];
+          var i;
+          for (i = 0; i < valuesToRemove.length; i++) {
+            listOfFields.splice( listOfFields.indexOf(valuesToRemove[i]), 1 );
+          }
+          window.console.log(listOfFields);
+          return listOfFields;
+        }
+        let currentTime = new Date();
+        var differenceInTime = currentTime.getTime() - start.getTime();
+        var differenceInDays = differenceInTime / (1000 * 3600 * 24);
+        window.console.log(differenceInDays);
+        if (differenceInDays < 365) {
+          return this.inputGroup.employmentDetails[this.data.personEmployment.employment]
+        } else {
+          return listOfFields;
+        }
       },
       submit() {
         let self = this;
