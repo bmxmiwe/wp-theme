@@ -144,8 +144,7 @@
               </component>
 
               <!-- rent -->
-              <text-input v-if="hasRent"
-                          v-model="data.household.rent"
+              <text-input v-model="data.household.rent"
                           v-bind="fields.household.rent"
                           class="large-4 column end">
               </text-input>
