@@ -409,7 +409,6 @@
       localStorage.removeItem('loanPeriod');
       localStorage.removeItem('phone');
       localStorage.removeItem('email');
-      window.console.log('ApplicationFormData:', ApplicationFormData);
       const reactiveArraysOfOptions = {
         employmentDetails: []
       };
