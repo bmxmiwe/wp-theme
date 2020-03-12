@@ -119,8 +119,7 @@
             <!-- don't display if employment is null -->
             <div v-if="data.personEmployment.employment !== null"
                  class="row">
-              {{isEmployedMoreThanYear()}}
-              <component v-for="(key, index) in isEmployedMoreThanYear()"
+              <component v-for="(key, index) in reactiveArraysOfOptions.employmentDetails"
                          :is="fields.employmentDetails[key].type"
                          :key="key"
                          v-model="data.personEmploymentDetails[key]"
@@ -410,6 +409,11 @@
       localStorage.removeItem('loanPeriod');
       localStorage.removeItem('phone');
       localStorage.removeItem('email');
+      window.console.log('ApplicationFormData:', ApplicationFormData);
+      const reactiveArraysOfOptions = {
+        employmentDetails: []
+      };
+      Object.assign(ApplicationFormData, {reactiveArraysOfOptions});
       return ApplicationFormData
     },
     components: {
@@ -420,32 +424,31 @@
       Loan,
       Datepicker,
     },
+
     methods: {
-      isEmployedMoreThanYear() {
-        let valuesToRemove = [
+      ifEmployedMoreThanYear() {
+        this.reactiveArraysOfOptions.employmentDetails = this.inputGroup.employmentDetails[this.data.personEmployment.employment]
+        const valuesToRemove = [
           'previousEmployer',
           'previousEmployedSince',
           'previousEmployedTo'
         ];
-        let start = ApplicationFormData.data.personEmploymentDetails.startMonth;
-        if (start === null) {
-          var listOfFields = this.inputGroup.employmentDetails[this.data.personEmployment.employment];
-          var i;
-          for (i = 0; i < valuesToRemove.length; i++) {
-            listOfFields.splice( listOfFields.indexOf(valuesToRemove[i]), 1 );
+        const singleDayValue = 24 * 60 * 60 * 1000;
+        const startDate = this.data.personEmploymentDetails.startMonth;
+        if(startDate) {
+          const currentDate = new Date();
+          const differenceInDays = Math.round(Math.abs((startDate - currentDate) / singleDayValue));
+          if(differenceInDays > 365) {
+            this.reactiveArraysOfOptions.employmentDetails = this.getFilteredArray(this.reactiveArraysOfOptions.employmentDetails, valuesToRemove);
           }
-          window.console.log(listOfFields);
-          return listOfFields;
-        }
-        let currentTime = new Date();
-        var differenceInTime = currentTime.getTime() - start.getTime();
-        var differenceInDays = differenceInTime / (1000 * 3600 * 24);
-        window.console.log(differenceInDays);
-        if (differenceInDays < 365) {
-          return this.inputGroup.employmentDetails[this.data.personEmployment.employment]
         } else {
-          return listOfFields;
+          this.reactiveArraysOfOptions.employmentDetails = this.getFilteredArray(this.reactiveArraysOfOptions.employmentDetails, valuesToRemove);
         }
+      },
+      getFilteredArray(baseArray, valuesToRemove) {
+        return baseArray.filter(element => {
+          return !valuesToRemove.some(valueToRemove => valueToRemove === element)
+        })
       },
       submit() {
         let self = this;
@@ -500,7 +503,7 @@
       prepareData() {
         // deep copy
         let preparedData = JSON.parse(JSON.stringify(this.data));
-        window.console.log(preparedData);
+        // window.console.log(preparedData);
         preparedData.queryString = getQueryParams();
         if (preparedData.personEmployment.employment === 'Eläkeläinen') {
           // set occupation category if occupation is 'retired'
@@ -800,6 +803,12 @@
     },
     watch: {
       // modify loans array when the number of loans changes
+      'data.personEmploymentDetails.startMonth': function () {
+        this.ifEmployedMoreThanYear()
+      },
+      'data.personEmployment.employment': function () {
+        this.ifEmployedMoreThanYear()
+      },
       'data.numberOfLoans': function (val, oldVal) {
         if (val < oldVal) {
           this.data.loans.splice(val);
