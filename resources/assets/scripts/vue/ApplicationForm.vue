@@ -823,7 +823,6 @@
         this.ifEmployedMoreThanYear()
       },
       'data.personInfo.maritalStatus': function () {
-        console.log('odpalenie watchera')
         this.setPersonInfoOptions()
       },
       'data.numberOfLoans': function (val, oldVal) {
