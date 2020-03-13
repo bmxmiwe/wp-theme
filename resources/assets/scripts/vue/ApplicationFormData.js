@@ -171,6 +171,18 @@ let fields = {
       'Eronnut',
     ],
   },
+  spousesMonthlyIncome: {
+    type: 'TextInput',
+    inputType: 'number',
+    label: 'Puolison kk-tulot ennen veroja',
+    placeholder: '€',
+  },
+  spousesMonthlyCost: {
+    type: 'TextInput',
+    inputType: 'number',
+    label: 'Puolison kk-menot',
+    placeholder: '€',
+  },
   children: {
     type: 'Dropdown',
     label: 'Lapsia taloudessa',
@@ -740,6 +752,8 @@ export default {
       postalNumber: null,
       postOffice: null,
       maritalStatus: null,
+      spousesMonthlyIncome: null,
+      spousesMonthlyCost: null,
       children: null,
       militaryService: fields.militaryService.unchecked,
     },
@@ -886,6 +900,8 @@ export default {
       'postalNumber',
       'postOffice',
       'maritalStatus',
+      'spousesMonthlyIncome',
+      'spousesMonthlyCost',
       'children',
     ],
     employmentDetails: {

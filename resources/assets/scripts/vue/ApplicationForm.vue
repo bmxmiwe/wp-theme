@@ -74,7 +74,7 @@
           </slider>
           <!--person info-->
           <div class="row">
-            <component v-for="(key, index) in inputGroup.personInfo"
+            <component v-for="(key, index) in reactiveArraysOfOptions.personInfo"
                        :is="fields[key].type"
                        v-model="data.personInfo[key]"
                        :key="key"
@@ -410,7 +410,8 @@
       localStorage.removeItem('phone');
       localStorage.removeItem('email');
       const reactiveArraysOfOptions = {
-        employmentDetails: []
+        employmentDetails: [],
+        personInfo: ApplicationFormData.inputGroup.personInfo
       };
       Object.assign(ApplicationFormData, {reactiveArraysOfOptions});
       return ApplicationFormData
@@ -442,6 +443,16 @@
           }
         } else {
           this.reactiveArraysOfOptions.employmentDetails = this.getFilteredArray(this.reactiveArraysOfOptions.employmentDetails, valuesToRemove);
+        }
+      },
+      setPersonInfoOptions() {
+        this.reactiveArraysOfOptions.personInfo = this.inputGroup.personInfo;
+        const valuesToRemove = [
+          'spousesMonthlyIncome',
+          'spousesMonthlyCost',
+        ];
+        if(!this.areMarriedOrLiveTogether){
+          this.reactiveArraysOfOptions.personInfo = this.getFilteredArray(this.reactiveArraysOfOptions.personInfo, valuesToRemove)
         }
       },
       getFilteredArray(baseArray, valuesToRemove) {
@@ -594,6 +605,9 @@
       }
     },
     computed: {
+      areMarriedOrLiveTogether() {
+        return (this.data.personInfo.maritalStatus === 'Naimisissa' || this.data.personInfo.maritalStatus === 'Avoliitossa')
+      },
       monthlyPayment() {
         if (this.data.loanAmount === null || this.data.loanPeriod === null) return 0;
         if (!this.other.apr) this.other.apr = 10.4;
@@ -807,6 +821,10 @@
       },
       'data.personEmployment.employment': function () {
         this.ifEmployedMoreThanYear()
+      },
+      'data.personInfo.maritalStatus': function () {
+        console.log('odpalenie watchera')
+        this.setPersonInfoOptions()
       },
       'data.numberOfLoans': function (val, oldVal) {
         if (val < oldVal) {
