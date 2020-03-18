@@ -250,6 +250,12 @@ let fields = {
     checked: 'Suoritettu',
     unchecked: 'Ei',
   },
+  politicalActiveId: {
+    type: 'Toggle',
+    label: 'Oletko sinä tai lähipiiriisi kuuluva henkilö poliittisesti vaikutusvaltaisessa asemassa?',
+    checked: 'Kyllä',
+    unchecked: 'Ei',
+  },
   extraPerson: {
     type: 'Toggle',
     slot: 'Haen yhteishakijan kanssa',
@@ -781,6 +787,7 @@ export default {
       citizenship: 'FI',
       taxationCountry: 'FI',
       militaryService: fields.militaryService.unchecked,
+      politicalActiveId: false,
     },
     personEmployment: {
       employment: null,
@@ -931,6 +938,7 @@ export default {
       'countryOfBirth',
       'citizenship',
       'taxationCountry',
+      'politicalActiveId',
     ],
     employmentDetails: {
       'Vakituinen': [
