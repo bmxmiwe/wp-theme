@@ -1,5 +1,6 @@
 import camelCaseKeys from 'camelcase-keys';
 import {amounts, years} from '../util/formAmounts'
+import {COUNTRIES} from "../macros/countries";
 
 let employmentFixedDurationInputGroup = [
   'occupationCategory',
@@ -220,6 +221,27 @@ let fields = {
         value: 7,
       },
     ],
+  },
+  countryOfBirth: {
+    type: 'Dropdown',
+    inputType: 'vue',
+    isSearchable: true,
+    label: 'Syntymämaa',
+    options: COUNTRIES,
+  },
+  citizenship: {
+    type: 'Dropdown',
+    inputType: 'vue',
+    isSearchable: true,
+    label: 'Kansalaisuus',
+    options: COUNTRIES,
+  },
+  taxationCountry: {
+    type: 'Dropdown',
+    inputType: 'vue',
+    isSearchable: true,
+    label: 'Verotusmaa',
+    options: COUNTRIES,
   },
   militaryService: {
     type: 'Toggle',
@@ -755,6 +777,9 @@ export default {
       spousesMonthlyIncome: null,
       spousesMonthlyCost: null,
       children: null,
+      countryOfBirth: 'FI',
+      citizenship: 'FI',
+      taxationCountry: 'FI',
       militaryService: fields.militaryService.unchecked,
     },
     personEmployment: {
@@ -903,6 +928,9 @@ export default {
       'spousesMonthlyIncome',
       'spousesMonthlyCost',
       'children',
+      'countryOfBirth',
+      'citizenship',
+      'taxationCountry',
     ],
     employmentDetails: {
       'Vakituinen': [

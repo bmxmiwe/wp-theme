@@ -3,15 +3,17 @@
   <div class="dropdown-container"
        :class="{'invalid-field': !validField}">
     <template v-if="label">
-      <label class="ar-input-label">{{label}}</label>
+      <label class="ar-input-label"> {{label}} </label>
     </template>
     <div class="icon-element-wrapper">
-      <span class="icon-container" v-if="icon"><i :class="iconClass" aria-hidden="true"></i></span>
+      <span class="icon-container" v-if="icon"><i :class="iconClass"></i></span>
       <v-select v-if="type === 'vue'"
                 v-model="vSelectValue"
-                :searchable="false"
+                :searchable="isSearchable"
                 :options="options"
-                :placeholder="placeholder"></v-select>
+                :placeholder="placeholder"
+                :input-id="classFeatureById"
+      />
       <select v-else
               v-model="vSelectValue">
         <option disabled selected :value="null">{{placeholder}}</option>
@@ -39,6 +41,14 @@
         type: String,
         'default': ApplicationFormData.text.general.selectPlaceholder
       },
+      inputType: {
+        type: String,
+        default: ''
+      },
+      isSearchable: {
+        type: Boolean,
+        default: false
+      },
       icon: false,
       iconClass: String,
     },
@@ -48,7 +58,9 @@
         || document.body.clientWidth;
 
       let type = (screenWidth < 640 ? 'native' : 'vue');
-
+      if(this.inputType) {
+        type = this.inputType;
+      }
       return {
         type: type,
         vSelectValue: this.value,
@@ -58,6 +70,9 @@
       vSelect
     },
     computed: {
+      classFeatureById() {
+        return this.isSearchable ? 'auto-complete' : ''
+      },
       validField() {
         return Validate.filled(this.value);
       }
@@ -96,6 +111,9 @@
   $light-gray: #D8D8D8;
   $white-gray: #EEEEEE;
 
+  #auto-complete {
+    opacity: unset;
+  }
   .dropdown-container {
 
     select,
