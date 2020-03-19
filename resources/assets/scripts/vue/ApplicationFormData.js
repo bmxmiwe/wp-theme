@@ -1,6 +1,8 @@
 import camelCaseKeys from 'camelcase-keys';
 import {amounts, years} from '../util/formAmounts'
 import {COUNTRIES} from "../macros/countries";
+import {APP_PURPOSE_ID} from "../macros/loans/appPurposeId";
+import {NUMBER_OF_LOANS} from "../macros/loans/numberOfLoans";
 
 let employmentFixedDurationInputGroup = [
   'occupationCategory',
@@ -378,60 +380,8 @@ let fields = {
     type: 'Toggle',
     slot: 'Muu luottokortti',
   },
-  numberOfLoans: {
-    type: 'Dropdown',
-    label: 'Lainojen lukumäärä',
-    options: [
-      {
-        value: 0,
-        label: 'Ei yhtään',
-      },
-      {
-        value: 1,
-        label: '1',
-      },
-      {
-        value: 2,
-        label: '2',
-      },
-      {
-        value: 3,
-        label: '3',
-      },
-      {
-        value: 4,
-        label: '4',
-      },
-      {
-        value: 5,
-        label: '5',
-      },
-      {
-        value: 6,
-        label: '6',
-      },
-      {
-        value: 7,
-        label: '7',
-      },
-      {
-        value: 8,
-        label: '8',
-      },
-      {
-        value: 9,
-        label: '9',
-      },
-      {
-        value: 10,
-        label: '10',
-      },
-      {
-        value: 11,
-        label: '11 tai enemmän',
-      },
-    ],
-  },
+  AppPurposeId : APP_PURPOSE_ID.component,
+  numberOfLoans: NUMBER_OF_LOANS.component,
   acceptTerms: {
     type: 'Toggle',
     slotHtml: 'Olen tutustunut <a target="_blank" href="' + termsUrl + '">yleisiin ehtoihin ja palvelukuvaukseen</a>.',
@@ -802,7 +752,8 @@ export default {
     loanCombineAmount: 100,
     extraPerson: fields.extraPerson.unchecked,
     hasLoans: fields.hasLoans.unchecked,
-    numberOfLoans: null,
+    AppPurposeId: APP_PURPOSE_ID.defaultValue,
+    numberOfLoans: NUMBER_OF_LOANS.default_value,
     extraPersonNumberOfLoans: null,
     extraPersonHasLoans: fields.hasLoans.unchecked,
     ehdot: 0,

@@ -171,6 +171,10 @@
 
                 <!-- loans -->
                 <h2 class="column">{{text.headingLoans}}</h2>
+                <dropdown v-model="data.AppPurposeId"
+                          v-bind="fields.AppPurposeId"
+                          class="large-4 column end">
+                </dropdown>
                 <dropdown v-model="data.numberOfLoans"
                           v-bind="fields.numberOfLoans"
                           class="large-4 column end">
@@ -807,7 +811,6 @@
       },
     },
     watch: {
-      // modify loans array when the number of loans changes
       'data.personEmploymentDetails.startMonth': function () {
         this.ifEmployedMoreThanYear()
       },
@@ -820,6 +823,7 @@
       'data.extraPersonInfo.extraPersonSameAddress': function () {
         this.setPersonInfoOptions()
       },
+      // modify loans array when the number of loans changes
       'data.numberOfLoans': function (val, oldVal) {
         if (val < oldVal) {
           this.data.loans.splice(val);
