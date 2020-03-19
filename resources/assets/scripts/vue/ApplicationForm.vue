@@ -199,8 +199,16 @@
                 </template>
                 <dropdown v-model="data.banks"
                           v-bind="fields.banks"
-                          class="large-4 column end">
+                          class="large-4 column end"
+                >
                 </dropdown>
+                <toggle
+                  v-model="data.electronicIdentification"
+                  v-bind="fields.electronicIdentification"
+                  class="large-4 column end"
+                >
+                  {{fields.electronicIdentification.slot}}
+                </toggle>
               </div>
             </div>
 
