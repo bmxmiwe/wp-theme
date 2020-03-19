@@ -1,5 +1,5 @@
 export const NUMBER_OF_LOANS = {
-    default_value: null,
+    defaultValue: null,
     component: {
         type: 'Dropdown',
         label: 'Lainojen lukumäärä',

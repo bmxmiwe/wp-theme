@@ -3,6 +3,7 @@ import {amounts, years} from '../util/formAmounts'
 import {COUNTRIES} from "../macros/countries";
 import {APP_PURPOSE_ID} from "../macros/loans/appPurposeId";
 import {NUMBER_OF_LOANS} from "../macros/loans/numberOfLoans";
+import {BANKS} from "../macros/loans/banks";
 
 let employmentFixedDurationInputGroup = [
   'occupationCategory',
@@ -382,6 +383,7 @@ let fields = {
   },
   AppPurposeId : APP_PURPOSE_ID.component,
   numberOfLoans: NUMBER_OF_LOANS.component,
+  banks: BANKS.component,
   acceptTerms: {
     type: 'Toggle',
     slotHtml: 'Olen tutustunut <a target="_blank" href="' + termsUrl + '">yleisiin ehtoihin ja palvelukuvaukseen</a>.',
@@ -753,7 +755,7 @@ export default {
     extraPerson: fields.extraPerson.unchecked,
     hasLoans: fields.hasLoans.unchecked,
     AppPurposeId: APP_PURPOSE_ID.defaultValue,
-    numberOfLoans: NUMBER_OF_LOANS.default_value,
+    numberOfLoans: NUMBER_OF_LOANS.defaultValue,
     extraPersonNumberOfLoans: null,
     extraPersonHasLoans: fields.hasLoans.unchecked,
     ehdot: 0,
@@ -817,6 +819,7 @@ export default {
       creditCardOther: 0,
     },
     loans: [],
+    banks: BANKS.defaultValue,
     extraPersonLoans: [],
     extraPersonInfo: {
       socialSecurityNumber: null,

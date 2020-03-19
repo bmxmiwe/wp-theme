@@ -197,6 +197,10 @@
                         :key="data.loans[index].loanNumber">
                   </loan>
                 </template>
+                <dropdown v-model="data.banks"
+                          v-bind="fields.banks"
+                          class="large-4 column end">
+                </dropdown>
               </div>
             </div>
 
