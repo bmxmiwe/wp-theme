@@ -882,6 +882,16 @@ export default {
       combineLabel: 'Yhdistä laina',
       totalAmountPlaceholder: 'Summa €',
       monthlyAmountPlaceholder: 'Kulut € / kk',
+      totalAmountRestrictions: {
+        totalAmountIsDecimal: false,
+        min: 2,
+        max: 999000,
+      },
+      totalMonthlyAmountRestrictions: {
+        totalAmountIsDecimal: false,
+        min: 1,
+        max: null,
+      },
     },
     general: {
       currencySymbol: '€',

@@ -48,10 +48,6 @@ export const NUMBER_OF_LOANS = {
                 value: 10,
                 label: '10',
             },
-            {
-                value: 11,
-                label: '11 tai enemmän',
-            },
         ],
     },
 };
