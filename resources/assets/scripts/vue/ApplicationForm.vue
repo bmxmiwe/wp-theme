@@ -429,7 +429,7 @@
 
     methods: {
       ifEmployedMoreThanYear() {
-        this.reactiveArraysOfOptions.employmentDetails = this.inputGroup.employmentDetails[this.data.personEmployment.employment]
+        this.reactiveArraysOfOptions.employmentDetails = this.inputGroup.employmentDetails[this.data.personEmployment.employment];
         const valuesToRemove = [
           'previousEmployer',
           'previousEmployedSince',
