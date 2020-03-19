@@ -631,18 +631,6 @@
       validHetu() {
         return hetu.valid(this.data.personInfo.socialSecurityNumber);
       },
-      militaryServiceRequired() {
-        // let socialSecurityNumber = this.data.personInfo.socialSecurityNumber;
-        // let age = Number(hetu.age(socialSecurityNumber, this.other.date));
-        // let gender = hetu.gender(socialSecurityNumber);
-        //
-        // if (age < 30 && gender === 'male') {
-        //   return true;
-        // }
-        //
-        // return false;
-        return true
-      },
       validData() {
         // huge mess ahead. sorry.
 
@@ -651,7 +639,7 @@
         for (let key in personInfo) {
           if (personInfo.hasOwnProperty(key)) {
             if (key === 'militaryService') {
-              if (this.militaryServiceRequired && invalid(personInfo['militaryService'])) {
+              if (invalid(personInfo['militaryService'])) {
                 return false;
               }
             }
