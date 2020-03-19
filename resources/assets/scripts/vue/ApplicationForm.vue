@@ -74,7 +74,7 @@
           </slider>
           <!--person info-->
           <div class="row">
-            <component v-for="(key, index) in reactiveArraysOfOptions.personInfo"
+            <component v-for="(key, index) in inputGroup.personInfo"
                        :is="fields[key].type"
                        v-model="data.personInfo[key]"
                        :key="key"
@@ -84,12 +84,10 @@
             </component>
 
             <!-- conditional: military service -->
-            <toggle v-if="militaryServiceRequired"
-                    v-model="data.personInfo.militaryService"
+            <Dropdown v-model="data.personInfo.militaryService"
                     v-bind="fields.militaryService"
                     class="large-4 column">
-              {{fields.militaryService.slot}}
-            </toggle>
+            </Dropdown>
           </div>
 
           <!-- employment and education -->
@@ -209,7 +207,7 @@
               <div class="row">
                 <h2 class="column">{{text.headingExtraPerson}}</h2>
 
-                <component v-for="(key, index) in inputGroup.extraPersonInfo"
+                <component v-for="(key, index) in reactiveArraysOfOptions.extraPersonInfo"
                            :is="fields[key].type"
                            :key="key"
                            v-model="data.extraPersonInfo[key]"
@@ -411,7 +409,7 @@
       localStorage.removeItem('email');
       const reactiveArraysOfOptions = {
         employmentDetails: [],
-        personInfo: ApplicationFormData.inputGroup.personInfo
+        extraPersonInfo: ApplicationFormData.inputGroup.extraPersonInfo
       };
       Object.assign(ApplicationFormData, {reactiveArraysOfOptions});
       return ApplicationFormData
@@ -423,6 +421,10 @@
       TextInput,
       Loan,
       Datepicker,
+    },
+
+    mounted() {
+      this.setPersonInfoOptions();
     },
 
     methods: {
@@ -446,13 +448,13 @@
         }
       },
       setPersonInfoOptions() {
-        this.reactiveArraysOfOptions.personInfo = this.inputGroup.personInfo;
+        this.reactiveArraysOfOptions.extraPersonInfo = this.inputGroup.extraPersonInfo;
         const valuesToRemove = [
           'spousesMonthlyIncome',
           'spousesMonthlyCost',
         ];
-        if(!this.areMarriedOrLiveTogether){
-          this.reactiveArraysOfOptions.personInfo = this.getFilteredArray(this.reactiveArraysOfOptions.personInfo, valuesToRemove)
+        if(!this.areMarriedOrLiveTogether || (this.data.extraPersonInfo.maritalStatusId === null && this.data.extraPersonInfo.extraPersonSameAddress !== 'Kyllä')){
+          this.reactiveArraysOfOptions.extraPersonInfo = this.getFilteredArray(this.reactiveArraysOfOptions.extraPersonInfo, valuesToRemove)
         }
       },
       getFilteredArray(baseArray, valuesToRemove) {
@@ -606,7 +608,8 @@
     },
     computed: {
       areMarriedOrLiveTogether() {
-        return (this.data.personInfo.maritalStatus === 'Naimisissa' || this.data.personInfo.maritalStatus === 'Avoliitossa')
+        const MARRIED = 1;
+        return (this.data.extraPersonInfo.maritalStatusId === MARRIED || this.data.extraPersonInfo.extraPersonSameAddress === 'Kyllä')
       },
       monthlyPayment() {
         if (this.data.loanAmount === null || this.data.loanPeriod === null) return 0;
@@ -629,15 +632,16 @@
         return hetu.valid(this.data.personInfo.socialSecurityNumber);
       },
       militaryServiceRequired() {
-        let socialSecurityNumber = this.data.personInfo.socialSecurityNumber;
-        let age = Number(hetu.age(socialSecurityNumber, this.other.date));
-        let gender = hetu.gender(socialSecurityNumber);
-
-        if (age < 30 && gender === 'male') {
-          return true;
-        }
-
-        return false;
+        // let socialSecurityNumber = this.data.personInfo.socialSecurityNumber;
+        // let age = Number(hetu.age(socialSecurityNumber, this.other.date));
+        // let gender = hetu.gender(socialSecurityNumber);
+        //
+        // if (age < 30 && gender === 'male') {
+        //   return true;
+        // }
+        //
+        // return false;
+        return true
       },
       validData() {
         // huge mess ahead. sorry.
@@ -822,7 +826,10 @@
       'data.personEmployment.employment': function () {
         this.ifEmployedMoreThanYear()
       },
-      'data.personInfo.maritalStatus': function () {
+      'data.extraPersonInfo.maritalStatusId': function () {
+        this.setPersonInfoOptions()
+      },
+      'data.extraPersonInfo.extraPersonSameAddress': function () {
         this.setPersonInfoOptions()
       },
       'data.numberOfLoans': function (val, oldVal) {

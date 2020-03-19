@@ -172,6 +172,32 @@ let fields = {
       'Eronnut',
     ],
   },
+  maritalStatusId: {
+    type: 'Dropdown',
+    label: 'Siviilisääty',
+    options: [
+      {
+        label: 'Naimisissa',
+        value: 1,
+      },
+      {
+        label: 'Naimaton',
+        value: 2,
+      },
+      {
+        label: 'Avoliitossa',
+        value: 3,
+      },
+      {
+        label: 'Leski',
+        value: 4,
+      },
+      {
+        label: 'Eronnut',
+        value: 5,
+      },
+    ],
+  },
   spousesMonthlyIncome: {
     type: 'TextInput',
     inputType: 'number',
@@ -244,11 +270,26 @@ let fields = {
     options: COUNTRIES,
   },
   militaryService: {
-    type: 'Toggle',
-    label: 'Asevelvollisuus',
-    slot: 'Suoritettu',
-    checked: 'Suoritettu',
-    unchecked: 'Ei',
+    type: 'Dropdown',
+    label: 'Asepalvelus',
+    options: [
+      {
+        label: 'Suoritettu',
+        value: 1,
+      },
+      {
+        label: 'Suorittamatta',
+        value: 2,
+      },
+      {
+        label: 'Vapautettu',
+        value: 3,
+      },
+      {
+        label: 'Ei asevelvollinen',
+        value: 4,
+      },
+    ],
   },
   politicalActiveId: {
     type: 'Toggle',
@@ -780,14 +821,8 @@ export default {
       postalNumber: null,
       postOffice: null,
       maritalStatus: null,
-      spousesMonthlyIncome: null,
-      spousesMonthlyCost: null,
       children: null,
-      countryOfBirth: 'FI',
-      citizenship: 'FI',
-      taxationCountry: 'FI',
-      militaryService: fields.militaryService.unchecked,
-      politicalActiveId: false,
+      militaryService: null,
     },
     personEmployment: {
       employment: null,
@@ -841,8 +876,14 @@ export default {
       streetAddress: null,
       postalNumber: null,
       postOffice: null,
-      maritalStatus: null,
+      maritalStatusId: null,
+      spousesMonthlyIncome: null,
+      spousesMonthlyCost: null,
       extraPersonSameAddress: fields.extraPersonSameAddress.unchecked,
+      countryOfBirth: 'FI',
+      citizenship: 'FI',
+      taxationCountry: 'FI',
+      politicalActiveId: false,
     },
     extraPersonEmployment: {
       employment: null,
@@ -932,13 +973,7 @@ export default {
       'postalNumber',
       'postOffice',
       'maritalStatus',
-      'spousesMonthlyIncome',
-      'spousesMonthlyCost',
       'children',
-      'countryOfBirth',
-      'citizenship',
-      'taxationCountry',
-      'politicalActiveId',
     ],
     employmentDetails: {
       'Vakituinen': [
@@ -996,8 +1031,14 @@ export default {
       'firstName',
       'phone',
       'email',
-      'maritalStatus',
+      'maritalStatusId',
       'extraPersonSameAddress',
+      'spousesMonthlyIncome',
+      'spousesMonthlyCost',
+      'countryOfBirth',
+      'citizenship',
+      'taxationCountry',
+      'politicalActiveId',
     ],
     extraPersonAddress: [
       'streetAddress',
