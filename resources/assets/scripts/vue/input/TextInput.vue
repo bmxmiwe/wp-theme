@@ -6,18 +6,23 @@
            type="text"
            v-on:blur="blurred"
            v-model="inputValue"
-           :placeholder="placeholder">
+           :placeholder="placeholder"
+    >
     <input v-else-if="inputType === 'number'"
            type="number"
            v-on:blur="blurred"
            v-model="inputValue"
-           :placeholder="placeholder">
+           :placeholder="placeholder"
+           :min="numberFieldRestrictions.min"
+           :max="numberFieldRestrictions.max"
+           @keypress="preventDecimalElements"
+    >
     <input v-else-if="inputType === 'email'"
            type="email"
            v-on:blur="blurred"
            v-model="inputValue"
-           :placeholder="placeholder">
-
+           :placeholder="placeholder"
+    >
     <div v-if="displayValidationInfo" class="validation-info">
       {{validation.msg}}
     </div>
@@ -39,6 +44,14 @@
       inputType: {
         type: String,
         'default': 'text',
+      },
+      numberFieldRestrictions: {
+        type: Object,
+        default: () => ({
+          totalAmountIsDecimal: true,
+          min: null,
+          max: null,
+        })
       }
     },
     data() {
@@ -50,6 +63,13 @@
     methods: {
       blurred() {
         this.userDone = true;
+      },
+      preventDecimalElements(event) {
+        const COMMA_KEY = 44;
+        const DOT_KEY = 46;
+        if(!this.numberFieldRestrictions.totalAmountIsDecimal && (event.keyCode === COMMA_KEY || event.keyCode === DOT_KEY)) {
+          event.preventDefault()
+        }
       }
     },
     computed: {

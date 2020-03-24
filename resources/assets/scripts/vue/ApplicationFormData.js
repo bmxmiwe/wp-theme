@@ -1,5 +1,11 @@
 import camelCaseKeys from 'camelcase-keys';
 import {amounts, years} from '../util/formAmounts'
+import {COUNTRIES} from "../macros/countries";
+
+import {APP_PURPOSE_ID} from "../macros/loans/appPurposeId";
+import {NUMBER_OF_LOANS} from "../macros/loans/numberOfLoans";
+import {BANKS} from "../macros/loans/banks";
+import {ELECTRONIC_IDENTIFICATION} from "../macros/loans/electronicIdentification";
 
 let employmentFixedDurationInputGroup = [
   'occupationCategory',
@@ -171,6 +177,44 @@ let fields = {
       'Eronnut',
     ],
   },
+  maritalStatusId: {
+    type: 'Dropdown',
+    label: 'Siviilisääty',
+    options: [
+      {
+        label: 'Naimisissa',
+        value: 1,
+      },
+      {
+        label: 'Naimaton',
+        value: 2,
+      },
+      {
+        label: 'Avoliitossa',
+        value: 3,
+      },
+      {
+        label: 'Leski',
+        value: 4,
+      },
+      {
+        label: 'Eronnut',
+        value: 5,
+      },
+    ],
+  },
+  spousesMonthlyIncome: {
+    type: 'TextInput',
+    inputType: 'number',
+    label: 'Puolison kk-tulot ennen veroja',
+    placeholder: '€',
+  },
+  spousesMonthlyCost: {
+    type: 'TextInput',
+    inputType: 'number',
+    label: 'Puolison kk-menot',
+    placeholder: '€',
+  },
   children: {
     type: 'Dropdown',
     label: 'Lapsia taloudessa',
@@ -209,11 +253,53 @@ let fields = {
       },
     ],
   },
+  countryOfBirth: {
+    type: 'Dropdown',
+    inputType: 'vue',
+    isSearchable: true,
+    label: 'Syntymämaa',
+    options: COUNTRIES,
+  },
+  citizenship: {
+    type: 'Dropdown',
+    inputType: 'vue',
+    isSearchable: true,
+    label: 'Kansalaisuus',
+    options: COUNTRIES,
+  },
+  taxationCountry: {
+    type: 'Dropdown',
+    inputType: 'vue',
+    isSearchable: true,
+    label: 'Verotusmaa',
+    options: COUNTRIES,
+  },
   militaryService: {
+    type: 'Dropdown',
+    label: 'Asepalvelus',
+    options: [
+      {
+        label: 'Suoritettu',
+        value: 1,
+      },
+      {
+        label: 'Suorittamatta',
+        value: 2,
+      },
+      {
+        label: 'Vapautettu',
+        value: 3,
+      },
+      {
+        label: 'Ei asevelvollinen',
+        value: 4,
+      },
+    ],
+  },
+  politicalActiveId: {
     type: 'Toggle',
-    label: 'Asevelvollisuus',
-    slot: 'Suoritettu',
-    checked: 'Suoritettu',
+    label: 'Oletko sinä tai lähipiiriisi kuuluva henkilö poliittisesti vaikutusvaltaisessa asemassa?',
+    checked: 'Kyllä',
     unchecked: 'Ei',
   },
   extraPerson: {
@@ -297,60 +383,12 @@ let fields = {
     type: 'Toggle',
     slot: 'Muu luottokortti',
   },
-  numberOfLoans: {
-    type: 'Dropdown',
-    label: 'Lainojen lukumäärä',
-    options: [
-      {
-        value: 0,
-        label: 'Ei yhtään',
-      },
-      {
-        value: 1,
-        label: '1',
-      },
-      {
-        value: 2,
-        label: '2',
-      },
-      {
-        value: 3,
-        label: '3',
-      },
-      {
-        value: 4,
-        label: '4',
-      },
-      {
-        value: 5,
-        label: '5',
-      },
-      {
-        value: 6,
-        label: '6',
-      },
-      {
-        value: 7,
-        label: '7',
-      },
-      {
-        value: 8,
-        label: '8',
-      },
-      {
-        value: 9,
-        label: '9',
-      },
-      {
-        value: 10,
-        label: '10',
-      },
-      {
-        value: 11,
-        label: '11 tai enemmän',
-      },
-    ],
-  },
+  // Loans components
+  AppPurposeId : APP_PURPOSE_ID.component,
+  numberOfLoans: NUMBER_OF_LOANS.component,
+  banks: BANKS.component,
+  electronicIdentification: ELECTRONIC_IDENTIFICATION.component,
+
   acceptTerms: {
     type: 'Toggle',
     slotHtml: 'Olen tutustunut <a target="_blank" href="' + termsUrl + '">yleisiin ehtoihin ja palvelukuvaukseen</a>.',
@@ -730,7 +768,10 @@ export default {
     loanCombineAmount: 100,
     extraPerson: fields.extraPerson.unchecked,
     hasLoans: fields.hasLoans.unchecked,
-    numberOfLoans: null,
+    AppPurposeId: APP_PURPOSE_ID.defaultValue,
+    numberOfLoans: NUMBER_OF_LOANS.defaultValue,
+    banks: BANKS.defaultValue,
+    electronicIdentification: ELECTRONIC_IDENTIFICATION.defaultValue,
     extraPersonNumberOfLoans: null,
     extraPersonHasLoans: fields.hasLoans.unchecked,
     ehdot: 0,
@@ -750,7 +791,7 @@ export default {
       postOffice: null,
       maritalStatus: null,
       children: null,
-      militaryService: fields.militaryService.unchecked,
+      militaryService: null,
     },
     personEmployment: {
       employment: null,
@@ -805,8 +846,14 @@ export default {
       streetAddress: null,
       postalNumber: null,
       postOffice: null,
-      maritalStatus: null,
+      maritalStatusId: null,
+      spousesMonthlyIncome: null,
+      spousesMonthlyCost: null,
       extraPersonSameAddress: fields.extraPersonSameAddress.unchecked,
+      countryOfBirth: 'FI',
+      citizenship: 'FI',
+      taxationCountry: 'FI',
+      politicalActiveId: false,
     },
     extraPersonEmployment: {
       employment: null,
@@ -854,6 +901,16 @@ export default {
       combineLabel: 'Yhdistä laina',
       totalAmountPlaceholder: 'Summa €',
       monthlyAmountPlaceholder: 'Kulut € / kk',
+      totalAmountRestrictions: {
+        totalAmountIsDecimal: false,
+        min: 2,
+        max: 999000,
+      },
+      totalMonthlyAmountRestrictions: {
+        totalAmountIsDecimal: false,
+        min: 1,
+        max: null,
+      },
     },
     general: {
       currencySymbol: '€',
@@ -955,8 +1012,14 @@ export default {
       'firstName',
       'phone',
       'email',
-      'maritalStatus',
+      'maritalStatusId',
       'extraPersonSameAddress',
+      'spousesMonthlyIncome',
+      'spousesMonthlyCost',
+      'countryOfBirth',
+      'citizenship',
+      'taxationCountry',
+      'politicalActiveId',
     ],
     extraPersonAddress: [
       'streetAddress',

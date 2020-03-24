@@ -55,10 +55,12 @@
           totalAmount: {
             inputType: 'number',
             placeholder: ApplicationFormData.text.loans.totalAmountPlaceholder,
+            numberFieldRestrictions: ApplicationFormData.text.loans.totalAmountRestrictions,
           },
           monthlyAmount: {
             inputType: 'number',
             placeholder: ApplicationFormData.text.loans.monthlyAmountPlaceholder,
+            numberFieldRestrictions: ApplicationFormData.text.loans.totalMonthlyAmountRestrictions,
           },
           loanType: ApplicationFormData.fields.loanType,
         },
