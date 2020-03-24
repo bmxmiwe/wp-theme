@@ -300,8 +300,8 @@ let fields = {
   politicalActiveId: {
     type: 'Toggle',
     label: 'Oletko sinä tai lähipiiriisi kuuluva henkilö poliittisesti vaikutusvaltaisessa asemassa?',
-    checked: 'Kyllä',
-    unchecked: 'Ei',
+    checked: -1,
+    unchecked: -2,
   },
   extraPerson: {
     type: 'Toggle',
@@ -849,7 +849,7 @@ export default {
       countryOfBirth: 'FI',
       citizenship: 'FI',
       taxationCountry: 'FI',
-      politicalActiveId: false,
+      politicalActiveId: -2,
     },
     extraPersonEmployment: {
       employment: null,
