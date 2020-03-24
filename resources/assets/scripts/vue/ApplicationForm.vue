@@ -859,7 +859,7 @@
               loanType: null,
               monthlyAmount: null,
               totalAmount: null,
-              refinance: false,
+              refinance: -2,
             });
           }
         }

@@ -22,8 +22,8 @@
         </text-input>
         <!-- (mortgages cannot be refinanced) -->
         <toggle v-if="value.loanType !== 'Mortgage' && withRefinance"
-                :checked="true"
-                :unchecked="false"
+                :checked="-1"
+                :unchecked="-2"
                 :value="value.refinance"
                 @input="v => {emitMerged({refinance: v})}"
                 class="large-4 column end">
