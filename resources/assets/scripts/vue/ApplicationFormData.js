@@ -30,8 +30,8 @@ let extraPersonEmploymentDefault = [
 ];
 
 let phonePlaceholder = '358 00 000 0000';
-
 let el = document.getElementById('application-form');
+
 if (el) {
   var apr = el.getAttribute('data-apr');
   var date = el.getAttribute('data-date');
@@ -641,10 +641,13 @@ let fields = {
       type: 'Dropdown',
       label: 'Asumismuoto',
       options: [
-        'Oma',
-        'Asumisoikeus',
-        'Vuokra',
+        'Asumisoikeus/Osaomis',
+        'Vuokra-asunto',
+        'Yhteisasunto',
+        'Omistusasunto',
         'Vanhempien luona',
+        'Avio-/Avopuolison as',
+        'Työsuhdeasunto',
       ],
     },
     apartmentType: {
@@ -652,9 +655,9 @@ let fields = {
       label: 'Asunnon tyyppi',
       options: [
         'Kerrostalo',
-        'Rivitalo',
+        'Rivi/paritalo',
         'Omakotitalo',
-        'Muu',
+        'OKT/osake',
       ],
     },
     moveInMonth: {
@@ -673,6 +676,12 @@ let fields = {
       type: 'Toggle',
       label: 'Loma-asunto',
       slot: 'Omistan loma-asunnon',
+    },
+    regularMonthlyExpenses: {
+      type: 'TextInput',
+      inputType: 'number',
+      label: 'Säännölliset kk menot',
+      placeholder: 'Vuokramenot € / kk',
     },
   },
   loanType: {
@@ -778,6 +787,7 @@ export default {
       holidayHome: 0,
       moveInMonth: null,
       rent: null,
+      regularMonthlyExpenses: null,
     },
     creditCards: {
       visa: 0,
@@ -932,6 +942,7 @@ export default {
       'apartmentType',
       'moveInMonth',
       'holidayHome',
+      'regularMonthlyExpenses',
     ],
     creditCards: [
       'visa',
