@@ -4,6 +4,5 @@ export const APPLICANT = {
         none: null,
         applicant: 1,
         coApplicant: 2,
-        applicantAndCoApplicant: 3,
     },
 };

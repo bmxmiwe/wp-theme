@@ -448,8 +448,6 @@
       updateApplicantField() {
         if(this.data.hasLoans === 'Kyllä' && this.data.extraPersonHasLoans === 'Ei') {
           this.data.applicant = APPLICANT.possibleOptions.applicant
-        } else if(this.data.hasLoans === 'Ei' && this.data.extraPersonHasLoans === 'Kyllä') {
-          this.data.applicant = APPLICANT.possibleOptions.coApplicant
         } else if (this.data.hasLoans === 'Kyllä' && this.data.extraPersonHasLoans === 'Kyllä') {
           this.data.applicant = APPLICANT.possibleOptions.applicantAndCoApplicant
         } else {
