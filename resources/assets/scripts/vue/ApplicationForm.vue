@@ -396,6 +396,7 @@
   import sendData from '../util/sendData.js';
   import validate from '../util/validate.js';
   import { getQueryParams } from '../util/requestUtils.js';
+  import {APPLICANT} from "../macros/loans/applicant";
 
 
   export default {
@@ -443,6 +444,15 @@
     },
 
     methods: {
+      updateApplicantField() {
+        if(this.data.hasLoans === 'Kyllä' && this.data.extraPersonHasLoans === 'Ei') {
+          this.data.applicant = APPLICANT.possibleOptions.applicant
+        } else if (this.data.hasLoans === 'Kyllä' && this.data.extraPersonHasLoans === 'Kyllä') {
+          this.data.applicant = APPLICANT.possibleOptions.applicantAndCoApplicant
+        } else {
+          this.data.applicant = APPLICANT.possibleOptions.none
+        }
+      },
       ifEmployedMoreThanYear() {
         this.reactiveArraysOfOptions.employmentDetails = this.inputGroup.employmentDetails[this.data.personEmployment.employment];
         const valuesToRemove = [
@@ -846,7 +856,7 @@
               loanType: null,
               monthlyAmount: null,
               totalAmount: null,
-              refinance: false,
+              refinance: -2,
             });
           }
         }
@@ -865,6 +875,12 @@
             });
           }
         }
+      },
+      'data.hasLoans': function () {
+        this.updateApplicantField()
+      },
+      'data.extraPersonHasLoans': function() {
+        this.updateApplicantField()
       }
     }
   }

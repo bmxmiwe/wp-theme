@@ -5,6 +5,7 @@ import {COUNTRIES} from "../macros/countries";
 import {APP_PURPOSE_ID} from "../macros/loans/appPurposeId";
 import {NUMBER_OF_LOANS} from "../macros/loans/numberOfLoans";
 import {BANKS} from "../macros/loans/banks";
+import {APPLICANT} from "../macros/loans/applicant";
 import {ELECTRONIC_IDENTIFICATION} from "../macros/loans/electronicIdentification";
 
 let employmentFixedDurationInputGroup = [
@@ -299,8 +300,8 @@ let fields = {
   politicalActiveId: {
     type: 'Toggle',
     label: 'Oletko sinä tai lähipiiriisi kuuluva henkilö poliittisesti vaikutusvaltaisessa asemassa?',
-    checked: 'Kyllä',
-    unchecked: 'Ei',
+    checked: -1,
+    unchecked: -2,
   },
   extraPerson: {
     type: 'Toggle',
@@ -728,24 +729,28 @@ let fields = {
     placeholder: 'Valitse lainan tyyppi',
     options: [
       {
-        value: 'Creditcard',
+        value: 15,
         label: 'Luottokortti',
       },
       {
-        value: 'Mortgage',
-        label: 'Asuntolaina',
-      },
-      {
-        value: 'Student',
+        value: 17,
         label: 'Opintolaina',
       },
       {
-        value: 'Car',
+        value: 12,
         label: 'Auto- tai venelaina',
       },
       {
-        value: 'Other',
-        label: 'Muu laina',
+        value: 13,
+        label: 'Kulutusluotto',
+      },
+      {
+        value: 14,
+        label: 'Muu vakuudellinen laina',
+      },
+      {
+        value: 16,
+        label: 'Muu vakuudeton laina',
       },
     ],
   },
@@ -774,6 +779,7 @@ export default {
     electronicIdentification: ELECTRONIC_IDENTIFICATION.defaultValue,
     extraPersonNumberOfLoans: null,
     extraPersonHasLoans: fields.hasLoans.unchecked,
+    applicant: APPLICANT.defaultValue,
     ehdot: 0,
     tarkistus: 0,
     userAgreementVersion: 0,
@@ -853,7 +859,7 @@ export default {
       countryOfBirth: 'FI',
       citizenship: 'FI',
       taxationCountry: 'FI',
-      politicalActiveId: false,
+      politicalActiveId: -2,
     },
     extraPersonEmployment: {
       employment: null,

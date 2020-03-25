@@ -1,10 +1,10 @@
 export const ELECTRONIC_IDENTIFICATION = {
-    defaultValue: false,
+    defaultValue: -2,
     component: {
         type: 'Toggle',
         label: ' ',
         slot: 'Onko sinulla verkkopankkitunnukset?',
-        checked: 'Kyllä',
-        unchecked: 'Ei',
+        checked: -1,
+        unchecked: -2,
     },
 }
