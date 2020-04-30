@@ -3672,8 +3672,8 @@ jpegtran-bin@^3.0.0:
     logalot "^2.0.0"
 
 "jquery@1.12.4 - 3":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.0.tgz#9980b97d9e4194611c36530e7dc46a58d7340fc9"
 
 jquery@^2.2.0:
   version "2.2.4"
@@ -6638,9 +6638,9 @@ vue-loader@^13.0.0:
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.5.3"
 
-vue-select@sagalbot/vue-select:
-  version "2.2.0"
-  resolved "https://codeload.github.com/sagalbot/vue-select/tar.gz/7a2fad6933c81130e5384426c68f0607c7d86308"
+vue-select@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/vue-select/-/vue-select-2.3.0.tgz#6b1aed857d63064960730d533660e778cfb637bc"
 
 vue-slider-component@^2.3.3:
   version "2.3.3"
