@@ -80,7 +80,7 @@
     "yargs": "^7.1.0"
   },
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.21.1",
     "camelcase-keys": "3.0.0",
     "finnish-business-ids": "^2.0.1",
     "font-awesome": "^4.7.0",
